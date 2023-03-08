@@ -41,8 +41,8 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `firstname`, `lastname`, `email`, `tel`, `city`) VALUES
-(1, 'John', 'DOE', 'john.doe@exemple.com', '0680532874', 'Marseille'),
-(2, 'Jane ', 'BOE', 'jane.doe@exemple.com', '0680532874', 'Marseille'),
+(1, 'John', 'DOE', 'john.doe@exemple.com', '0680532574', 'Marseille'),
+(2, 'Jane ', 'BOE', 'jane.doe@exemple.com', '0680532870', 'Marseille'),
 (11, 'Marie', 'COE', 'marie.doe@exemple.com', '0541208969', 'Lyon');
 
 --
