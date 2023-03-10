@@ -31,34 +31,34 @@ class ContactModel{
     }
 
     // Créer un contact
-    public function add(string $firstname, string $lastname, string $email, string $tel, string $city): void
+    public function add(Contact $contact): void
     {
         $query = 
         "INSERT INTO contact(firstname, lastname, email, tel, city) VALUES (:firstname, :lastname, :email, :tel, :city)";
 
         $prepareAndExecute = $this->db->executeRequest($query, [
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'email' => $email,
-            'tel' => $tel,
-            'city' => $city
+            'firstname' => $contact->getFirstname(),
+            'lastname' => $contact->getLastname(),
+            'email' => $contact->getEmail(),
+            'tel' => $contact->getTel(),
+            'city' => $contact->getCity()
         ]);
     }
 
     // Modifie un contact
-    public function edit(int $id, string $firstname, string $lastname, string $email, string $tel, string $city): void
+    public function update(Contact $contact): void
     {
         $query =
         "UPDATE contact SET firstname = :firstname, lastname = :lastname, email = :email, tel = :tel, city = :city
         WHERE id = :id
         ";
         $prepareAndExecute = $this->db->executeRequest($query, [
-            'id' => $id,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'email' => $email,
-            'tel' => $tel,
-            'city' => $city
+            'id' => $contact->getId(),
+            'firstname' => $contact->getFirstname(),
+            'lastname' => $contact->getLastname(),
+            'email' => $contact->getEmail(),
+            'tel' => $contact->getTel(),
+            'city' => $contact->getCity()
         ]);
     }
 

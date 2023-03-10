@@ -2,6 +2,7 @@
 
 require_once "config/database.php";
 require_once 'models/ContactModel.php';
+require_once "entities/Contact.php";
 
 class ContactController
 {
@@ -51,10 +52,12 @@ class ContactController
                     if (preg_match('/^[A-Za-z\-]+$/', $firstname) && preg_match('/^[A-Za-z\-]+$/', $lastname)) {
                         if (in_array($city, ["Lyon", "Marseille", "Paris"], true)) {
 
+                            $contact = new Contact(null, $firstname, strtoupper($lastname), $email, $tel, $city);
+                            
                             // Vérifie que l'adresse mail n'existe pas déjà
                             if (!$this->contactModel->checkEmailExists($email)) {
                                 try {
-                                    $this->contactModel->add($firstname, strtoupper($lastname), $email, $tel, $city);
+                                    $this->contactModel->add($contact);
 
                                     // Message de succès indiquant que le contact a bien été créé
                                     $_SESSION['success_message'] = "Le contact $firstname $lastname a bien été ajouté au carnet d'adresses.";
@@ -131,10 +134,12 @@ class ContactController
                     if (preg_match('/^[A-Za-z\-]+$/', $firstname) && preg_match('/^[A-Za-z\-]+$/', $lastname)) {
                         if (in_array($city, ["Lyon", "Marseille", "Paris"], true)) {
 
+                            $contact = new Contact($id, $firstname, strtoupper($lastname), $email, $tel, $city);
+
                             // Vérifie que l'adresse mail n'existe pas déjà
                             if (!$this->contactModel->checkEmailExists($email)) {
                                 try {
-                                    $this->contactModel->edit($id, $firstname, strtoupper($lastname), $email, $tel, $city);
+                                    $this->contactModel->update($contact);
 
                                     // Message de succès indiquant que le contact a bien été mis à jour
                                     $_SESSION['success_message'] = "Le contact $firstname $lastname a bien été mis à jour dans le carnet d'adresses.";

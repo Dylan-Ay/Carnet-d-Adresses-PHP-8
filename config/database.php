@@ -25,11 +25,6 @@ class Database
     {
         return $this->conn;
     }
-
-    public function lastInsertId()
-    {
-        return $this->conn->lastInsertId();
-    }
     
     public function executeRequest($sql, $params = NULL)
     {
